@@ -66,7 +66,7 @@ class TakePictureScreenState extends State<TakePictureScreen> {
     @override
     Widget build(BuildContext context) {
         return Scaffold(
-            appBar: AppBar(title: Text('Take a picture')),
+            appBar: AppBar(title: Text('Toma una foto')),
             // Debes esperar hasta que el controlador se inicialice antes de mostrar la vista previa 
             // de la cámara. Utiliza un FutureBuilder para mostrar un spinner de carga 
             // hasta que el controlador haya terminado de inicializar.
@@ -76,7 +76,8 @@ class TakePictureScreenState extends State<TakePictureScreen> {
                     if (snapshot.connectionState == ConnectionState.done) {
                         // Si el Future está completo, muestra la vista previa
                         return CameraPreview(_controller);
-                    } else {
+                    } 
+                    else {
                         // De lo contrario, muestra un indicador de carga
                         return Center(child: CircularProgressIndicator());
                     }
@@ -91,7 +92,6 @@ class TakePictureScreenState extends State<TakePictureScreen> {
                     try {
                         // Ensure the camera is initialized
                         await _initializeControllerFuture;
-
                         // Construye la ruta donde la imagen debe ser guardada usando 
                         // el paquete path.
                         final path = join(
@@ -110,7 +110,8 @@ class TakePictureScreenState extends State<TakePictureScreen> {
                                 builder: (context) => DisplayPictureScreen(imagePath: path),
                             ),
                         );
-                    } catch (e) {
+                    } 
+                    catch (e) {
                         // Si se produce un error, regístralo en la consola.
                         print(e);
                     }
@@ -129,7 +130,7 @@ class DisplayPictureScreen extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
         return Scaffold(
-            appBar: AppBar(title: Text('Display the Picture')),
+            appBar: AppBar(title: Text('Visualizar imagen')),
             // La imagen se almacena como un archivo en el dispositivo. Usa el 
             // constructor `Image.file` con la ruta dada para mostrar la imagen
             body: Image.file(File(imagePath)),
